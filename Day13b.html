@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <style>
+        .ab{
+            background-color: aquamarine;
+        }
+        .bc{
+            background-color: red;
+        }
+        .cd{
+            background-color: rgb(99, 219, 34);
+        }
+        button{
+            cursor: pointer;
+            border:none;
+            margin-right: 20px;
+        }
+        .abc{
+            display: flex;
+        }
+        .over{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height:90vh;
+        }
+        .timer{
+            height:70px;
+            width:70px;
+            background-color: cyan;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="over">
+    <h1>TIMER</h1>
+    <div class="timer"> <span id="min">00</span>:<span id="sec">00</span></div>
+    <div class="abc">
+        <button class="ab" onclick="start()">START</button>
+        <button class="bc" onclick="stop()">STOP</button>
+        <button class="cd" onclick="reset()">RESET</button>
+    </div>
+    </div>
+    <script>
+        const min = document.getElementById('min');
+        const sec = document.getElementById('sec');
+        let m = 0;
+        let s = 0;
+        let time = null;
+        function updateDisplay(){
+            min.textContent = String(m).padStart(2,'0');
+            sec.textContent = String(s).padStart(2,'0');
+        }
+        function start(){
+            if (time !== null) return;
+            time = setInterval(()=>{
+                s++;
+                if(s === 60){
+                    s=0;
+                    m++;
+                }
+                updateDisplay();
+            },1000);
+        }
+        function stop(){
+            clearInterval(time);
+            time=null;  
+        }
+        function reset(){
+            clearInterval(time);
+            time = null;
+            m=0;
+            s=0;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        button{
+            cursor: pointer;
+            background-color: aqua;
+        }
+        .abcd{
+            display: flex;
+            justify-content: end;
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            padding:4px;
+        }
+        li{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>To-Do-List</h1>
+    <input type="text" id="input" placeholder="Enter a new task">
+    <button onclick="add()">Add</button>
+    <ol id="ab"></ol>
+    <script>
+        function add(){    
+        const input = document.getElementById('input');
+        const ab = document.getElementById('ab');
+        const task = input.value.trim();        
+            if(task !== ""){
+                const ar = document.createElement('li');
+                ar.textContent = task;
+                const del = document.createElement('button');
+                del.className = "abcd"
+                del.innerHTML ='<i class="fa-solid fa-xmark"></i>';
+                del.onclick = function () {
+                    ab.removeChild(ar);
+                };
+                ar.appendChild(del);
+                ab.appendChild(ar);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+</html>
